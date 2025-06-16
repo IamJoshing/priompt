@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "@anysphere/priompt": "^0.2.1"
+  },
+  "devDependencies": {
+    "@anysphere/priompt-preview": "^0.2.1"
+  }
+}
