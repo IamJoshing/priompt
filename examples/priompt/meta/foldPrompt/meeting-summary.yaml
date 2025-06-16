@@ -1,0 +1,18 @@
+role: Project Manager
+taskDescription: analyze a raw meeting transcript and organize it into a concise summary with clear takeaways.
+
+rawContent: |
+  Okay everyone, thanks for coming. So, the new marketing campaign… it's a bit all over the place. Sarah, you mentioned the blog posts are delayed? And Mark, I think you said the social media graphics are still waiting on copy. We really need to get this moving. The launch is set for the end of the month. I need everyone to update the main project board by tomorrow. Oh, and legal got back to us – the disclaimer for the website needs to be longer, so we'll have to incorporate that. Let's not forget to circle back on the budget for the ad spend, which is still pending approval.
+
+outputFormat: |
+  1. Key Decisions:
+     - [A bulleted list of the most important decisions made during the meeting.]
+
+  2. Action Items:
+     - [A numbered list of tasks, with the responsible person assigned to each.]
+
+  3. Blockers:
+     - [A bulleted list of any obstacles hindering the project's progress.]
+
+  4. For Follow-up:
+     - [A list of topics that require further discussion or future action.]

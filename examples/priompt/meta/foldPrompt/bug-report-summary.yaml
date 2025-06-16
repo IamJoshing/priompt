@@ -1,0 +1,10 @@
+role: Senior Software Engineer
+taskDescription: analyze a user's bug report and format it for our internal tracking system.
+rawContent: "The app crashes when I try to upload a photo on my Pixel 8. It just freezes and then closes. I'm on the latest version, 3.4.1. It was working yesterday. I tried restarting my phone but it didn't help."
+outputFormat: |
+  - **Bug Title:** [A concise title for the bug]
+  - **Device:** [User's device]
+  - **App Version:** [Version number]
+  - **Steps to Reproduce:** [Numbered list of steps]
+  - **Observed Behavior:** [What happened]
+  - **Expected Behavior:** [What should have happened]
