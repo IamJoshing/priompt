@@ -18,7 +18,7 @@ export const enum SpecialTokenAction {
   Special = 2
 }
 export declare function getTokenizer(): Tokenizer
-export class Tokenizer {
+export declare class Tokenizer {
   exactNumTokensNoSpecialTokens(text: string, encoding: SupportedEncoding): Promise<number>
   exactNumTokens(text: string, encoding: SupportedEncoding, specialTokenDefaultAction: SpecialTokenAction, specialTokenOverrides: Record<string, SpecialTokenAction>): Promise<number>
   encodeCl100KNoSpecialTokens(text: string): Promise<Array<number>>
@@ -28,7 +28,7 @@ export class Tokenizer {
   decodeByte(token: number, encoding: SupportedEncoding): Promise<Uint8Array>
   decode(encodedTokens: Array<number>, encoding: SupportedEncoding): Promise<string>
 }
-export class SyncTokenizer {
+export declare class SyncTokenizer {
   constructor()
   approxNumTokens(text: string, encoding: SupportedEncoding): number
 }

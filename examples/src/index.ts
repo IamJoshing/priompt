@@ -7,6 +7,9 @@ import Fastify, { FastifyError, FastifyLoggerOptions, FastifyReply, FastifyReque
 import { OpenAI as OpenAIV4 } from 'openai-v4';
 import { FunctionCallingPrompt, SimpleFunction } from './function-calling-prompt';
 import { ChatCompletionResponseMessage, Configuration, CreateChatCompletionRequest, OpenAIApi } from 'openai';
+import { FoldPrompt } from './meta/FoldPrompt/FoldPrompt';
+import * as fs from 'fs';
+import * as path from 'path';
 
 const portString = process.env.SERVER_PORT;
 if (portString === undefined || Number.isNaN(parseInt(portString))) {
@@ -58,6 +61,7 @@ async function main() {
 		const query = request.query as { message: string; name: string; numTokens: string };
 		const tokenLimit = parseInt(query.numTokens);
 
+		console.log('message', query.message);
 		const prompt = ExamplePrompt({
 			message: query.message,
 			name: query.name
@@ -182,6 +186,40 @@ async function main() {
 		} catch (error) {
 			console.error(error);
 			return reply.status(500).send("Internal server error.");
+		}
+	});
+
+	S.get("/fold", async (request, reply) => {
+		try {
+			// Read the fake meeting transcript file
+			const transcriptPath = path.join(__dirname, 'fake_meeting_transcript_two.md');
+			const rawContent = fs.readFileSync(transcriptPath, 'utf-8');
+
+			const prompt = FoldPrompt({
+				role: "Project Manager",
+				taskDescription: "analyze a raw meeting transcript and organize it into a concise summary",
+				rawContent: rawContent,
+				outputFormat: "1. Key Decisions:\n2. Action Items:\n3. Blockers:\n4. For Follow-up:"
+			});
+			const rendered = await render(prompt, {
+				tokenizer: CL100K,
+				tokenLimit: 10000
+			});
+
+			console.log(JSON.stringify(rendered.prompt, null, 2));
+
+			const request = {
+				...promptToOpenAIChatRequest(rendered.prompt),
+				model: "gpt-3.5-turbo",
+			};
+
+			const openaiResult = await openai.createChatCompletion(request as unknown as CreateChatCompletionRequest);
+			const openaiOutput = openaiResult.data.choices[0];
+
+			return reply.type("text/plain").send(openaiOutput.message?.content || "No response generated");
+		} catch (error) {
+			console.error('Error reading transcript file:', error);
+			return reply.status(500).send("Error reading meeting transcript file.");
 		}
 	});
 

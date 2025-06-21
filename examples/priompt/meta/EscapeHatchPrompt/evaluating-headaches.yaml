@@ -1,0 +1,21 @@
+status: "insufficient_information"
+stoppedAt: "attempting to assess symptom severity and determine urgency level"
+attemptedStep: "evaluating whether headaches require immediate medical attention"
+missingInfo:
+  - "symptom severity rating (1-10 scale)"
+  - "current medications (especially blood thinners, blood pressure meds)"
+  - "relevant medical history (hypertension, migraines, head injuries)"
+  - "specific headache characteristics (location, type of pain, triggers)"
+  - "associated symptoms (vision changes, nausea, fever)"
+providedInfo:
+  - "patient age: 45 years old"
+  - "symptom: headaches lasting one week"
+  - "progression: headaches getting worse"
+partialProgress: "identified headaches as primary concern, noted progressive worsening pattern"
+nextSteps:
+  - "Ask patient to rate headache severity on 1-10 scale"
+  - "Obtain complete medication list"
+  - "Screen for red flag symptoms (sudden onset, fever, vision changes)"
+  - "Gather medical history for migraines, hypertension, head trauma"
+confidence: 0.0
+# This shows exactly where the AI stopped and what work it had completed
